@@ -20,7 +20,13 @@ app.controller("ContentController", ["$scope", "$http", "$timeout", function($sc
 
   $scope.click = function() {
 
-    $http.post("/api/click", { name: $scope.name })
+    var name = $scope.name
+    
+    if (!name) {
+      name = "You forgot a name";
+    }
+
+    $http.post("/api/click", { name: name })
       .success(function(data){
         console.log(data);
       })
